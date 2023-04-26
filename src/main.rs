@@ -88,7 +88,7 @@ fn main() {
     let lines11 = reader11.lines().map(|l| l.unwrap() );
     let roman_names = ClusterChainGenerator::builder()
         .train(lines11)
-        .with_prior(0.001)
+        .with_prior(0.0001)
         .build();
     for _i in 0..10 {
         println!("{}", roman_names.generate_one());
@@ -100,7 +100,7 @@ fn main() {
     let lines12 = reader12.lines().map(|l| l.unwrap() );
     let roman_names = ClusterChainGenerator::builder()
         .train(lines12)
-        .with_prior(0.001)
+        .with_prior(0.0001)
         .with_pattern("^[a-z]{4,10}$")
         .build();
     for _i in 0..10 {
@@ -114,7 +114,6 @@ fn main() {
     let lines13 = reader13.lines().map(|l| l.unwrap() );
     let roman_names = ClusterChainGenerator::builder()
         .train(lines13)
-        .with_prior(0.001)
         .with_pattern("^[a-z]{2,8}ia$")
         .build();
     for _i in 0..10 {
@@ -139,7 +138,6 @@ fn main() {
     let lines15 = reader15.lines().map(|l| l.unwrap() );
     let elements_names = ClusterChainGenerator::builder()
         .train(lines15)
-        .with_prior(0.001)
         .build();
     for _i in 0..10 {
         println!("{}", elements_names.generate_one());
@@ -151,7 +149,7 @@ fn main() {
     let lines16 = reader16.lines().map(|l| l.unwrap() );
     let poke_names = ClusterChainGenerator::builder()
         .train(lines16)
-        .with_prior(0.001)
+        .with_prior(0.0001)
         .with_pattern("^[a-z]{6,12}$")
         .build();
     for _i in 0..10 {
