@@ -36,9 +36,9 @@ checksum = "6a987beff54b60ffa6d51982e1aa1146bc42f19bd26be28b0586f252fccf5317"
 
 [[package]]
 name = "markov_namegen"
-version = "0.1.2"
+version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "91b68b367266171064598037a7dba259e7fc5ab74add49a1660e4079fea2ed6e"
+checksum = "28737218b7b705a21b65b867e748a4dc3960e670e4b8abb8725680488f7c6581"
 dependencies = [
  "multimarkov",
  "regex",
@@ -61,7 +61,7 @@ dependencies = [
 
 [[package]]
 name = "namegen_tests"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "markov_namegen",
 ]

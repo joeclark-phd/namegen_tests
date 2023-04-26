@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::{BufReader, BufRead};
-use markov_namegen::characterchain::generator::CharacterChainGenerator;
-use markov_namegen::interface::RandomTextGenerator;
+use markov_namegen::CharacterChainGenerator;
+use markov_namegen::RandomTextGenerator;
 
 fn main() {
     println!("Here are some tests of the markov_namegen crate!\n");
