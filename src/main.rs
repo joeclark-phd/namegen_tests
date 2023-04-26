@@ -1,6 +1,6 @@
 use std::fs::File;
 use std::io::{BufReader, BufRead};
-use markov_namegen::CharacterChainGenerator;
+use markov_namegen::{CharacterChainGenerator, ClusterChainGenerator};
 use markov_namegen::RandomTextGenerator;
 
 fn main() {
@@ -77,6 +77,86 @@ fn main() {
     }
 
 
+    // ClusterChainGenerator examples
+
+
+    println!("\nHere are some tests of the ClusterChainGenerator!\n");
+
+    println!("10 names based on romans.txt with default settings:");
+    let file11 = File::open("resources/romans.txt").unwrap();
+    let reader11 = BufReader::new(file11);
+    let lines11 = reader11.lines().map(|l| l.unwrap() );
+    let roman_names = ClusterChainGenerator::builder()
+        .train(lines11)
+        .with_prior(0.001)
+        .build();
+    for _i in 0..10 {
+        println!("{}", roman_names.generate_one());
+    }
+
+    println!("\n10 more with a pattern that keeps the length from 4-10 characters:");
+    let file12 = File::open("resources/romans.txt").unwrap();
+    let reader12 = BufReader::new(file12);
+    let lines12 = reader12.lines().map(|l| l.unwrap() );
+    let roman_names = ClusterChainGenerator::builder()
+        .train(lines12)
+        .with_prior(0.001)
+        .with_pattern("^[a-z]{4,10}$")
+        .build();
+    for _i in 0..10 {
+        println!("{}", roman_names.generate_one());
+    }
+
+
+    println!("\n10 more with a pattern that requires they end with -ia:");
+    let file13 = File::open("resources/romans.txt").unwrap();
+    let reader13 = BufReader::new(file13);
+    let lines13 = reader13.lines().map(|l| l.unwrap() );
+    let roman_names = ClusterChainGenerator::builder()
+        .train(lines13)
+        .with_prior(0.001)
+        .with_pattern("^[a-z]{2,8}ia$")
+        .build();
+    for _i in 0..10 {
+        println!("{}", roman_names.generate_one());
+    }
+
+    println!("\n10 names based on uk_surnames.txt, without priors:");
+    let file14 = File::open("resources/uk_surnames.txt").unwrap();
+    let reader14 = BufReader::new(file14);
+    let lines14 = reader14.lines().map(|l| l.unwrap() );
+    let uk_names = ClusterChainGenerator::builder()
+        .train(lines14)
+        .without_prior()
+        .build();
+    for _i in 0..10 {
+        println!("{}", uk_names.generate_one());
+    }
+
+    println!("\n10 names based on periodic_elements.txt:");
+    let file15 = File::open("resources/periodic_elements.txt").unwrap();
+    let reader15 = BufReader::new(file15);
+    let lines15 = reader15.lines().map(|l| l.unwrap() );
+    let elements_names = ClusterChainGenerator::builder()
+        .train(lines15)
+        .with_prior(0.001)
+        .build();
+    for _i in 0..10 {
+        println!("{}", elements_names.generate_one());
+    }
+
+    println!("\n10 names based on pokemon_modern.txt (length 6-12):");
+    let file16 = File::open("resources/pokemon_modern.txt").unwrap();
+    let reader16 = BufReader::new(file16);
+    let lines16 = reader16.lines().map(|l| l.unwrap() );
+    let poke_names = ClusterChainGenerator::builder()
+        .train(lines16)
+        .with_prior(0.001)
+        .with_pattern("^[a-z]{6,12}$")
+        .build();
+    for _i in 0..10 {
+        println!("{}", poke_names.generate_one());
+    }
 
 
 
