@@ -17,7 +17,7 @@ fn main() {
         println!("{}", roman_names.generate_one());
     }
 
-    println!("\n10 more with a pattern that keeps the length from 4-10 characters");
+    println!("\n10 more with a pattern that keeps the length from 4-10 characters:");
     let file2 = File::open("resources/romans.txt").unwrap();
     let reader2 = BufReader::new(file2);
     let lines2 = reader2.lines().map(|l| l.unwrap() );
@@ -30,7 +30,7 @@ fn main() {
     }
 
 
-    println!("\n10 more with a pattern that requires they end with -ia");
+    println!("\n10 more with a pattern that requires they end with -ia:");
     let file3 = File::open("resources/romans.txt").unwrap();
     let reader3 = BufReader::new(file3);
     let lines3 = reader3.lines().map(|l| l.unwrap() );
@@ -42,7 +42,7 @@ fn main() {
         println!("{}", roman_names.generate_one());
     }
 
-    println!("\n10 names based on uk_surnames.txt");
+    println!("\n10 names based on uk_surnames.txt:");
     let file4 = File::open("resources/uk_surnames.txt").unwrap();
     let reader4 = BufReader::new(file4);
     let lines4 = reader4.lines().map(|l| l.unwrap() );
@@ -53,7 +53,7 @@ fn main() {
         println!("{}", uk_names.generate_one());
     }
 
-    println!("\n10 names based on periodic_elements.txt");
+    println!("\n10 names based on periodic_elements.txt:");
     let file5 = File::open("resources/periodic_elements.txt").unwrap();
     let reader5 = BufReader::new(file5);
     let lines5 = reader5.lines().map(|l| l.unwrap() );
@@ -62,6 +62,18 @@ fn main() {
         .build();
     for _i in 0..10 {
         println!("{}", elements_names.generate_one());
+    }
+
+    println!("\n10 names based on pokemon_modern.txt (length 6-12):");
+    let file6 = File::open("resources/pokemon_modern.txt").unwrap();
+    let reader6 = BufReader::new(file6);
+    let lines6 = reader6.lines().map(|l| l.unwrap() );
+    let poke_names = CharacterChainGenerator::builder()
+        .train(lines6)
+        .with_pattern("^[a-z]{6,12}$")
+        .build();
+    for _i in 0..10 {
+        println!("{}", poke_names.generate_one());
     }
 
 
